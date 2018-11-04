@@ -19,8 +19,8 @@ export class TodoService {
     this.todoRepository.save(todo);
   }
 
-  update(id: number, todo: Todo) {
-    this.todoRepository.update(id, todo);
+  update(id: number, content: string) {
+    this.todoRepository.update(id, { content: content});
   }
 
   remove(id: number) {
