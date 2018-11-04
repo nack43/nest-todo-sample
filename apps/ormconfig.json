@@ -1,0 +1,10 @@
+{
+  "type": "mysql",
+  "host": "mysql",
+  "port": 13306,
+  "username": "todouser",
+  "password": "todopass",
+  "database": "todo",
+  "entities": ["src/**/**.entity{.ts,.js}"],
+  "synchronize": true
+}

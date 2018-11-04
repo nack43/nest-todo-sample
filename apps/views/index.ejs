@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  <body>
+    
+    <div class="add">
+      <h2>Add Todo</h2>
+      <form action='/todo' method='POST'>
+        <input type='text' name='content'>
+        <input type='submit' value='add'>
+      </form>
+    </div>
+
+    <div class="list">
+      <h2>Todo List</h2>
+      <ul>
+        <% for (const todo of todos) { %>
+          <li>
+            <%= todo.id %>: <%= todo.content %> 
+            <button class="edit" data-edit-id=<%= todo.id %>>Edit</button>
+            <button class="delete" data-delete-id=<%= todo.id %>>Delete</button>
+          </li>
+        <% } %>
+      </ul>
+    </div>
+  </body>
+</html>

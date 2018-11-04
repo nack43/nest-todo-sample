@@ -1,0 +1,47 @@
+version: '2'
+services:
+  data:
+    image: busybox
+    volumes:
+      - ./misc/data:/var/lib/mysql
+
+  web:
+    build: ./web
+    container_name: web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ../apps:/var/www/apps
+    working_dir: /var/www/apps
+    command: [sh, -c, npm install]
+    command: npm run start:dev
+    networks:
+      - todo-net
+
+  mysql:
+    build: ./mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: todo
+      MYSQL_USER: todouser
+      MYSQL_PASSWORD: todopass
+    ports:
+      - "13306:13306"
+    volumes_from:
+      - data
+    container_name: mysql
+    networks:
+      - todo-net
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "10080:80"
+    container_name: nginx
+    networks:
+      - todo-net
+
+networks:
+  todo-net:
+    driver: bridge
