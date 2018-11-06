@@ -2,6 +2,7 @@
   <head>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/todo.css">
   </head>
   <body>
     
@@ -15,15 +16,17 @@
 
     <div class="list">
       <h2>Todo List</h2>
-      <ul>
+      <ol>
         <% for (const todo of todos) { %>
           <li>
-            <%= todo.id %>: <%= todo.content %> 
-            <button class="edit" data-edit-id=<%= todo.id %>>Edit</button>
-            <button class="delete" data-delete-id=<%= todo.id %>>Delete</button>
+            <div class="elements">
+              <input class="content" type="text" readonly name="content" data-edit-id=<%= todo.id %> value="<%= todo.content %>">
+              <button class="edit">Edit</button>
+              <button class="delete" data-delete-id=<%= todo.id %>>Delete</button>
+          </div>
           </li>
         <% } %>
-      </ul>
+      </ol>
     </div>
   </body>
 </html>
